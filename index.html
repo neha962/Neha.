@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tripzygo — March Instagram Content Calendar</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F5EFE0;
+    --terracotta: #C45C3A;
+    --ocean: #1A4D6E;
+    --gold: #D4A853;
+    --sage: #7A9E7E;
+    --cream: #FAF6EF;
+    --dark: #1C1A17;
+    --reel: #C45C3A;
+    --carousel: #1A4D6E;
+    --story: #7A9E7E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ocean);
+    padding: 36px 48px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(212,168,83,0.15);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    right: 80px; top: 40px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(196,92,58,0.2);
+  }
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo-mark {
+    width: 48px; height: 48px;
+    background: var(--gold);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; color: var(--ocean);
+    font-weight: 700;
+  }
+  .brand-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+  .brand-text p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .header-right { text-align: right; }
+  .month-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .year-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .header-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+  .stat-val {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ── COMPETITOR INSIGHT BANNER ── */
+  .insights-bar {
+    background: var(--sand);
+    border-bottom: 2px solid var(--gold);
+    padding: 14px 48px;
+    display: flex;
+    gap: 40px;
+    overflow-x: auto;
+    flex-wrap: wrap;
+  }
+  .insight-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+  }
+  .insight-icon { font-size: 16px; }
+  .insight-text { font-size: 12px; color: var(--ocean); }
+  .insight-text strong { font-weight: 600; }
+
+  /* ── LEGEND ── */
+  .legend {
+    display: flex;
+    gap: 20px;
+    padding: 20px 48px;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+  .legend-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-right: 4px; }
+  .legend-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 12px; font-weight: 500;
+    cursor: pointer;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1.5px solid transparent;
+    transition: all 0.2s;
+  }
+  .legend-item:hover { opacity: 0.8; }
+  .legend-item.active { border-color: currentColor; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-reel { background: var(--reel); }
+  .dot-carousel { background: var(--carousel); }
+  .dot-story { background: var(--sage); }
+  .legend-item.reel { color: var(--reel); }
+  .legend-item.carousel { color: var(--carousel); }
+  .legend-item.story { color: var(--sage); }
+
+  /* ── MAIN GRID ── */
+  .calendar-wrapper {
+    padding: 28px 48px 48px;
+  }
+  .week-labels {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .week-label {
+    text-align: center;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999;
+    padding: 4px 0;
+  }
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+  }
+
+  .day-cell {
+    background: #fff;
+    border-radius: 12px;
+    min-height: 130px;
+    padding: 10px;
+    border: 1.5px solid rgba(0,0,0,0.06);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    overflow: hidden;
+  }
+  .day-cell:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .day-cell.empty { background: rgba(0,0,0,0.015); cursor: default; border-color: transparent; }
+  .day-cell.empty:hover { transform: none; box-shadow: none; border-color: transparent; }
+  .day-cell.has-reel { border-left: 3.5px solid var(--reel); }
+  .day-cell.has-carousel { border-left: 3.5px solid var(--carousel); }
+  .day-cell.has-story { border-left: 3.5px solid var(--sage); }
+  .day-cell.today { background: #fffbf3; }
+
+  .day-num {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+  .day-cell.today .day-num {
+    background: var(--gold);
+    color: #fff;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+  }
+
+  .post-pill {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    margin-bottom: 5px;
+    padding: 5px 7px;
+    border-radius: 7px;
+    font-size: 10px;
+    line-height: 1.35;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .post-pill:hover { opacity: 0.85; }
+  .post-pill.reel { background: rgba(196,92,58,0.1); color: var(--reel); }
+  .post-pill.carousel { background: rgba(26,77,110,0.1); color: var(--carousel); }
+  .post-pill.story { background: rgba(122,158,126,0.12); color: var(--sage); }
+
+  .pill-icon { font-size: 11px; flex-shrink: 0; margin-top: 0.5px; }
+  .pill-text { font-weight: 500; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(28,26,23,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: #fff;
+    border-radius: 20px;
+    max-width: 520px;
+    width: 100%;
+    overflow: hidden;
+    animation: slideUp 0.25s ease;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .modal-header {
+    padding: 24px 28px 20px;
+    position: relative;
+  }
+  .modal-header.reel { background: rgba(196,92,58,0.1); border-bottom: 2px solid var(--reel); }
+  .modal-header.carousel { background: rgba(26,77,110,0.1); border-bottom: 2px solid var(--carousel); }
+  .modal-header.story { background: rgba(122,158,126,0.12); border-bottom: 2px solid var(--sage); }
+
+  .modal-type {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .modal-type.reel { color: var(--reel); }
+  .modal-type.carousel { color: var(--carousel); }
+  .modal-type.story { color: var(--sage); }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    line-height: 1.3;
+    color: var(--dark);
+  }
+  .modal-date { font-size: 12px; color: #999; margin-top: 4px; }
+  .close-btn {
+    position: absolute;
+    right: 20px; top: 20px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.07);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+  }
+  .close-btn:hover { background: rgba(0,0,0,0.14); }
+
+  .modal-body { padding: 24px 28px; }
+  .detail-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  .detail-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .detail-content {}
+  .detail-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #aaa; margin-bottom: 2px; }
+  .detail-val { font-size: 13.5px; color: var(--dark); line-height: 1.5; }
+  .tags-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+  .tag {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    background: var(--sand);
+    color: var(--ocean);
+    font-weight: 500;
+  }
+
+  /* ── STRATEGY SECTION ── */
+  .strategy-section {
+    padding: 0 48px 48px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--ocean);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--sand);
+  }
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .strategy-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px;
+    border: 1.5px solid rgba(0,0,0,0.06);
+  }
+  .strategy-card h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .strategy-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .strategy-card ul li {
+    font-size: 12.5px;
+    color: #555;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    line-height: 1.45;
+  }
+  .strategy-card ul li:last-child { border-bottom: none; }
+
+  .competitor-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 40px;
+  }
+  .competitor-table th {
+    background: var(--ocean);
+    color: #fff;
+    padding: 11px 16px;
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+  .competitor-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    vertical-align: top;
+  }
+  .competitor-table tr:nth-child(even) td { background: rgba(245,239,224,0.4); }
+  .competitor-table tr.tripzygo-row td {
+    background: rgba(212,168,83,0.12);
+    font-weight: 600;
+    color: var(--ocean);
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-up { background: rgba(122,158,126,0.2); color: var(--sage); }
+  .badge-down { background: rgba(196,92,58,0.15); color: var(--reel); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    header, .insights-bar, .legend, .calendar-wrapper, .strategy-section { padding-left: 20px; padding-right: 20px; }
+    .month-label { font-size: 30px; }
+    .day-cell { min-height: 90px; padding: 7px; }
+    .header-stats { gap: 20px; }
+  }
+  @media (max-width: 540px) {
+    .week-label { font-size: 9px; }
+    .day-cell { min-height: 70px; }
+    .post-pill { display: none; }
+    .day-cell.has-reel::after, .day-cell.has-carousel::after, .day-cell.has-story::after {
+      content: '●';
+      font-size: 14px;
+      display: block;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">
+    <div class="brand">
+      <div class="logo-mark">T</div>
+      <div class="brand-text">
+        <h1>Tripzygo</h1>
+        <p>Instagram Content Calendar</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="month-label">March</div>
+      <div class="year-label">2026</div>
+    </div>
+  </div>
+  <div class="header-stats">
+    <div class="stat"><span class="stat-val">20</span><span class="stat-label">Planned Posts</span></div>
+    <div class="stat"><span class="stat-val">12</span><span class="stat-label">Reels</span></div>
+    <div class="stat"><span class="stat-val">8</span><span class="stat-label">Carousels</span></div>
+    <div class="stat"><span class="stat-val">4–5×</span><span class="stat-label">Per Week</span></div>
+  </div>
+</header>
+
+<!-- COMPETITOR INSIGHT BAR -->
+<div class="insights-bar">
+  <div class="insight-item"><span class="insight-icon">👁️</span><span class="insight-text"><strong>WanderOn</strong> 532K followers — community-led reels, group trip hype</span></div>
+  <div class="insight-item"><span class="insight-icon">🦈</span><span class="insight-text"><strong>CaptureATrip</strong> 562K — Shark Tank India fame, community travel</span></div>
+  <div class="insight-item"><span class="insight-icon">🔥</span><span class="insight-text"><strong>Desh Videsh</strong> 223K — "crazy group trips", active upcoming dates push</span></div>
+  <div class="insight-item"><span class="insight-icon">✨</span><span class="insight-text"><strong>Gap to exploit:</strong> Luxury + personalised angle underserved by competitors</span></div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <span class="legend-label">Filter:</span>
+  <div class="legend-item reel active" onclick="filterType('reel', this)"><div class="dot dot-reel"></div>🎬 Reel</div>
+  <div class="legend-item carousel active" onclick="filterType('carousel', this)"><div class="dot dot-carousel"></div>📖 Carousel</div>
+  <div class="legend-item story active" onclick="filterType('story', this)"><div class="dot dot-story"></div>⚡ Story/Collab</div>
+</div>
+
+<!-- CALENDAR -->
+<div class="calendar-wrapper">
+  <div class="week-labels">
+    <div class="week-label">Sun</div>
+    <div class="week-label">Mon</div>
+    <div class="week-label">Tue</div>
+    <div class="week-label">Wed</div>
+    <div class="week-label">Thu</div>
+    <div class="week-label">Fri</div>
+    <div class="week-label">Sat</div>
+  </div>
+  <div class="calendar-grid" id="calGrid"></div>
+</div>
+
+<!-- STRATEGY SECTION -->
+<div class="strategy-section">
+  <h2 class="section-title">📊 Competitor Analysis & Strategic Gaps</h2>
+  <table class="competitor-table">
+    <thead>
+      <tr>
+        <th>Brand</th>
+        <th>Followers</th>
+        <th>Content Style</th>
+        <th>Gap / Weakness</th>
+        <th>Tripzygo Opportunity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>WanderOn</strong></td>
+        <td>532K</td>
+        <td>Group trips, socialising, backpacker</td>
+        <td>Budget-focused, less luxury</td>
+        <td>Target premium travellers they ignore</td>
+      </tr>
+      <tr>
+        <td><strong>CaptureATrip</strong></td>
+        <td>562K</td>
+        <td>Community, Shark Tank hype, colourful</td>
+        <td>Less personalisation storytelling</td>
+        <td>Showcase "your trip, your way" angle</td>
+      </tr>
+      <tr>
+        <td><strong>Desh Videsh</strong></td>
+        <td>223K</td>
+        <td>Upcoming dates push, group hype</td>
+        <td>Spammy promo feel, weak content value</td>
+        <td>Add education + inspiration value</td>
+      </tr>
+      <tr>
+        <td><strong>Deyor</strong></td>
+        <td>Mid-tier</td>
+        <td>Luxury resorts, package-focused</td>
+        <td>Generic destination shots</td>
+        <td>Human stories + AI planning angle</td>
+      </tr>
+      <tr>
+        <td><strong>Holiday Tribes</strong></td>
+        <td>Niche</td>
+        <td>Experiential, community</td>
+        <td>Limited reach, slow posting</td>
+        <td>Out-publish and out-engage</td>
+      </tr>
+      <tr class="tripzygo-row">
+        <td>🚀 <strong>Tripzygo</strong></td>
+        <td>262 → 5K+ goal</td>
+        <td>Luxury + AI personalised</td>
+        <td>New brand — pure upside</td>
+        <td>Own the "smart luxury travel" niche</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="section-title">🎯 Content Pillars & Strategy</h2>
+  <div class="strategy-grid">
+    <div class="strategy-card">
+      <h4 style="color:var(--reel)">🎬 Reels — Reach & Discovery</h4>
+      <ul>
+        <li>Hook in first 1.5 seconds — show destination magic</li>
+        <li>Under 30 seconds for max completion rate</li>
+        <li>Use trending audio for algorithmic boost</li>
+        <li>"Stop scrolling if you want to visit…" format</li>
+        <li>Post Mon, Wed, Fri, Sat for optimal reach</li>
+      </ul>
+    </div>
+    <div class="strategy-card">
+      <h4 style="color:var(--carousel)">📖 Carousels — Education & Saves</h4>
+      <ul>
+        <li>Hook slide with bold text/question</li>
+        <li>8–10 slides for maximum swipe-through</li>
+        <li>End with clear CTA ("Save this for your trip")</li>
+        <li>Mix images + short clips per slide</li>
+        <li>Tuesday & Thursday — best save rates</li>
+      </ul>
+    </div>
+    <div class="strategy-card">
+      <h4 style="color:var(--sage)">⚡ Stories & Engagement</h4>
+      <ul>
+        <li>Daily stories: polls, quizzes, countdowns</li>
+        <li>"Would you rather" destination polls</li>
+        <li>Trip sneak-peek BTS content</li>
+        <li>Reply to every comment for first hour</li>
+        <li>Collab posts with micro travel influencers</li>
+      </ul>
+    </div>
+    <div class="strategy-card">
+      <h4 style="color:var(--gold)">🏷️ Hashtag Strategy</h4>
+      <ul>
+        <li>5–10 hashtags per post (2026 best practice)</li>
+        <li>#TripzygoTravel (own branded hashtag)</li>
+        <li>Mix: #LuxuryTravel #IndiaTravel #GroupTrips</li>
+        <li>Destination-specific: #KashmirTrip #BaliTravel</li>
+        <li>Niche: #CustomisedHolidays #AITravel</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header" id="modalHeader">
+      <button class="close-btn" onclick="closeModalBtn()">✕</button>
+      <div class="modal-type" id="modalType"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-date" id="modalDate"></div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const POSTS = [
+  // Week 1
+  { day: 2, type: 'reel', title: 'Kashmir in 30 Seconds', platform: 'Instagram', hook: '"Stop scrolling — this is what Kashmir looks like in March 🏔️"', idea: 'Fast-cut cinematic reel: snow-capped Dal Lake → saffron fields → wooden shikaras → cup of kahwa. End with: "Book your March trip — link in bio."', cta: 'Comment your dream season below 👇', hashtags: ['#KashmirTravel', '#TripzygoTravel', '#LuxuryTravel', '#IncredibleIndia'], time: '6:30 PM' },
+  { day: 4, type: 'carousel', title: '7 Luxury Hotels Under ₹5,000/Night in India', platform: 'Instagram', hook: 'Slide 1: "You don\'t need a big budget for luxury. Swipe →"', idea: '7 slide carousel — one hotel per slide with property photo, location tag, price range, and Tripzygo tip. Slide 8: CTA to DM for custom package.', cta: 'Save this post — future you will thank you 🙏', hashtags: ['#LuxuryTravel', '#IndiaHotels', '#TravelTips', '#Tripzygo'], time: '12:00 PM' },
+  { day: 6, type: 'reel', title: 'Bali vs Thailand — Which Should You Pick?', platform: 'Instagram', hook: '"Your wallet, your vibe, your call — let\'s break it down 🌴"', idea: 'Split-screen reel: Bali shots on left, Thailand on right. Compare: cost, vibe, food, adventure. Last frame: "Tell us below which one you\'d pick!" Uses trending comparison audio.', cta: 'Bali 🌺 or Thailand 🐘 — comment below', hashtags: ['#BaliTravel', '#ThailandTravel', '#AsiaTravel', '#TripzygoTravel'], time: '7:00 PM' },
+  { day: 7, type: 'story', title: 'Weekend Poll: Dream Destination', platform: 'Stories', hook: 'Poll sticker: "Next trip?" — Europe vs Southeast Asia vs India', idea: 'Interactive story series: Poll → Share results → "We plan all 3 — DM us your choice for a free custom itinerary quote."', cta: 'DM "QUOTE" for a free itinerary', hashtags: [], time: '11:00 AM' },
+
+  // Week 2
+  { day: 9, type: 'reel', title: 'Things No One Tells You Before Visiting Europe', platform: 'Instagram', hook: '"I wish someone told me this before my Europe trip 😅"', idea: 'Talking-head or text-on-screen reel revealing 5 real travel hacks: shoulder season dates, train passes, free museums, tipping culture. Position Tripzygo as the expert.', cta: 'Save for your Europe trip. Part 2 in stories!', hashtags: ['#EuropeTravel', '#TravelHacks', '#TravelTips', '#CustomisedHolidays'], time: '6:00 PM' },
+  { day: 11, type: 'carousel', title: 'Complete 7-Day Rajasthan Itinerary', platform: 'Instagram', hook: 'Slide 1: "The only Rajasthan itinerary you need (screenshot this)"', idea: '9-slide carousel: Day-by-day plan with city, must-see, where to eat, stay type. Beautiful photo each slide. Slide 9: "Want this customised for you? DM us."', cta: 'Save & share with your travel squad 💛', hashtags: ['#Rajasthan', '#RajasthanTourism', '#IndiaItinerary', '#TripzygoTravel'], time: '12:30 PM' },
+  { day: 13, type: 'reel', title: 'How We Plan Your Dream Trip in 24 Hours', platform: 'Instagram', hook: '"From "I want to travel" to full itinerary — in 24 hours 🤯"', idea: 'BTS process reel: screen recording of AI tool + team call + itinerary PDF reveal. Humanise the brand. Shows speed and personalisation. Key differentiator vs competitors.', cta: 'DM "PLAN" and we\'ll start yours today', hashtags: ['#TravelPlanning', '#AITravel', '#CustomHoliday', '#TripzygoInternational'], time: '7:00 PM' },
+  { day: 14, type: 'carousel', title: 'Valentine\'s Week Special: Romantic Getaways', platform: 'Instagram', hook: '"Honeymoon or anniversary? These destinations hit different in March 🌹"', idea: 'Romance-focused carousel: Maldives, Udaipur, Santorini, Coorg, Bali — with overwater villa shots, sunset views. Ending slide: "Surprise your partner — DM for quote."', cta: 'Tag your travel partner below ❤️', hashtags: ['#HoneymoonTravel', '#RomanticGetaway', '#CouplesTravel', '#Tripzygo'], time: '11:00 AM' },
+
+  // Week 3
+  { day: 16, type: 'reel', title: 'Hidden Gems in Southeast Asia You\'ve Never Heard Of', platform: 'Instagram', hook: '"Tourists go to Bali. Smart travellers go here 👀"', idea: 'Quick-cut reel showcasing: Kampot Cambodia, Koh Rong, Nusa Penida offbeat spots, Pai Thailand. Hook travellers who want unique, less crowded destinations.', cta: 'Comment which one surprised you most!', hashtags: ['#HiddenGems', '#SoutheastAsia', '#OffbeatTravel', '#TravelSecrets'], time: '6:00 PM' },
+  { day: 18, type: 'carousel', title: 'India Travel Myths — BUSTED 🧨', platform: 'Instagram', hook: 'Slide 1: "Everything you believe about India travel is WRONG"', idea: 'Myth vs Fact carousel — "India is only for budget travellers" / "Solo travel isn\'t safe" / "You need months to plan" — each debunked with a bold fact. Strong brand voice.', cta: 'Share this with someone who needs to read this!', hashtags: ['#IndiaTravel', '#TravelMyths', '#TravelFacts', '#TripzygoTravel'], time: '12:00 PM' },
+  { day: 19, type: 'reel', title: 'March Is the Best Time to Visit These 5 Places', platform: 'Instagram', hook: '"Pack your bags — March is peak season for these destinations 🌸"', idea: 'Seasonal travel reel: Holi festival Rajasthan, cherry blossoms Japan (from India), Havelock Islands, Vietnam spring, Morocco spring. Urgency: "Book before crowds arrive."', cta: 'Which one are you booking? Comment below ⬇️', hashtags: ['#MarchTravel', '#SeasonalTravel', '#TravelNow', '#Tripzygo'], time: '7:00 PM' },
+  { day: 21, type: 'story', title: 'Collab: Micro-Influencer Trip Feature', platform: 'Stories + Feed', hook: 'Feature a travel creator\'s experience booked through Tripzygo', idea: 'Collab post or story takeover with a 5K–50K travel influencer. Authentic testimonial format: "I booked my Bali trip through Tripzygo and here\'s what happened…"', cta: 'Swipe up / DM to book yours', hashtags: ['#TripzygoTravel', '#TravelInfluencer'], time: '6:00 PM' },
+
+  // Week 4
+  { day: 23, type: 'reel', title: 'Watch Us Build a Custom Itinerary LIVE', platform: 'Instagram', hook: '"Tell us a budget and destination — we\'ll plan it in 60 seconds 🎯"', idea: 'Screen-record-style reel: User DMs "₹80,000, Maldives, 5 nights" → real-time itinerary build. Show hotel, flight, activities. End: "Want yours? DM us."', cta: 'DM your budget + dream destination NOW', hashtags: ['#ItineraryPlanning', '#TravelPlanning', '#LuxuryTravel', '#TripzygoInternational'], time: '6:00 PM' },
+  { day: 25, type: 'carousel', title: 'Packing Guide: 10 Things You Always Forget', platform: 'Instagram', hook: 'Slide 1: "I forgot THIS on my last trip and almost ruined it 😬"', idea: '10-slide "don\'t forget" packing carousel with fun illustrations / flat-lay photos. Relatable, save-worthy content. Every slide = one item with travel tip. Final: Tripzygo logo + CTA.', cta: 'Save this before your next trip! 🎒', hashtags: ['#PackingTips', '#TravelHacks', '#TravelPacking', '#TripzygoTravel'], time: '12:00 PM' },
+  { day: 26, type: 'reel', title: 'Solo Travel vs Group Travel: The Real Truth', platform: 'Instagram', hook: '"I\'ve done both. Here\'s what they don\'t tell you 👇"', idea: 'Honest comparison reel using split screen or monologue. Cost, safety, fun, memories — real perspective. Position Tripzygo as expert for both. Relatable & shareable.', cta: 'Solo 🎒 or Group 👯 — what\'s your style?', hashtags: ['#SoloTravel', '#GroupTravel', '#TravelDebate', '#IndiaTravel'], time: '7:00 PM' },
+  { day: 28, type: 'carousel', title: 'April Travel Ideas: What to Book Right Now', platform: 'Instagram', hook: 'Slide 1: "April is coming. Don\'t get stuck with nowhere to go 🗓️"', idea: 'Forward-planning carousel for April: 6 destinations with ideal travel window, weather, highlight activity, price bracket. Urgency: "Early April slots filling up." Final CTA.', cta: 'Comment your April plan 👇 or DM to book', hashtags: ['#AprilTravel', '#TravelPlanning', '#IndiaTravel', '#Tripzygo'], time: '12:00 PM' },
+  { day: 30, type: 'reel', title: 'Month Recap: Your Favourite Tripzygo Moments', platform: 'Instagram', hook: '"March flew by — here\'s what we packed in 🔥"', idea: 'Month-end compilation reel: best travel shots, client trip videos, team moments, top comments from the month. Community celebration. Builds brand warmth and shows growth.', cta: 'Which post was your favourite? Comment below!', hashtags: ['#TripzygoTravel', '#MarchTravel', '#TravelCommunity'], time: '6:00 PM' },
+  { day: 31, type: 'story', title: 'End-of-Month CTA: April Bookings Open', platform: 'Stories', hook: 'Countdown sticker to April. "Spots are limited for April departures"', idea: 'Story series: Countdown timer → Swipe-up form / link → "Book a free call with our travel expert." Drive conversions from organic audience built over March.', cta: 'Tap the link — book your April trip today!', hashtags: [], time: '11:00 AM' },
+];
+
+const activeFilters = new Set(['reel', 'carousel', 'story']);
+
+function filterType(type, el) {
+  if (activeFilters.has(type)) {
+    activeFilters.delete(type);
+    el.classList.remove('active');
+  } else {
+    activeFilters.add(type);
+    el.classList.add('active');
+  }
+  renderCalendar();
+}
+
+function renderCalendar() {
+  const grid = document.getElementById('calGrid');
+  grid.innerHTML = '';
+
+  // March 2026 starts on Sunday (0)
+  const startDay = 0;
+  const daysInMonth = 31;
+
+  // Empty cells before day 1
+  for (let i = 0; i < startDay; i++) {
+    const empty = document.createElement('div');
+    empty.className = 'day-cell empty';
+    grid.appendChild(empty);
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const cell = document.createElement('div');
+    const dayPosts = POSTS.filter(p => p.day === d);
+    const visiblePosts = dayPosts.filter(p => activeFilters.has(p.type));
+
+    let borderClass = '';
+    if (visiblePosts.length > 0) {
+      borderClass = 'has-' + visiblePosts[0].type;
+    }
+
+    cell.className = `day-cell ${borderClass}`;
+    if (d === 5) cell.classList.add('today');
+
+    const numEl = document.createElement('div');
+    numEl.className = 'day-num';
+    numEl.textContent = d;
+    cell.appendChild(numEl);
+
+    visiblePosts.forEach(post => {
+      const pill = document.createElement('div');
+      pill.className = `post-pill ${post.type}`;
+      const icons = { reel: '🎬', carousel: '📖', story: '⚡' };
+      pill.innerHTML = `<span class="pill-icon">${icons[post.type]}</span><span class="pill-text">${post.title}</span>`;
+      pill.addEventListener('click', (e) => { e.stopPropagation(); openModal(post); });
+      cell.appendChild(pill);
+    });
+
+    if (visiblePosts.length > 0) {
+      cell.addEventListener('click', () => openModal(visiblePosts[0]));
+    }
+
+    grid.appendChild(cell);
+  }
+}
+
+function openModal(post) {
+  const overlay = document.getElementById('modalOverlay');
+  const header = document.getElementById('modalHeader');
+  const typeEl = document.getElementById('modalType');
+  const titleEl = document.getElementById('modalTitle');
+  const dateEl = document.getElementById('modalDate');
+  const body = document.getElementById('modalBody');
+
+  const typeLabels = { reel: '🎬 Instagram Reel', carousel: '📖 Carousel Post', story: '⚡ Story / Collab' };
+  header.className = 'modal-header ' + post.type;
+  typeEl.className = 'modal-type ' + post.type;
+  typeEl.textContent = typeLabels[post.type];
+  titleEl.textContent = post.title;
+
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const date = new Date(2026, 2, post.day);
+  dateEl.textContent = `${days[date.getDay()]}, March ${post.day} · ${post.time}`;
+
+  let tagsHtml = post.hashtags.length > 0 
+    ? `<div class="tags-row">${post.hashtags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : '';
+
+  body.innerHTML = `
+    <div class="detail-row">
+      <span class="detail-icon">🎣</span>
+      <div class="detail-content">
+        <div class="detail-title">Opening Hook</div>
+        <div class="detail-val">${post.hook}</div>
+      </div>
+    </div>
+    <div class="detail-row">
+      <span class="detail-icon">💡</span>
+      <div class="detail-content">
+        <div class="detail-title">Content Idea</div>
+        <div class="detail-val">${post.idea}</div>
+      </div>
+    </div>
+    <div class="detail-row">
+      <span class="detail-icon">📣</span>
+      <div class="detail-content">
+        <div class="detail-title">Call to Action</div>
+        <div class="detail-val">${post.cta}</div>
+      </div>
+    </div>
+    ${post.hashtags.length > 0 ? `<div class="detail-row">
+      <span class="detail-icon">🏷️</span>
+      <div class="detail-content">
+        <div class="detail-title">Hashtags</div>
+        ${tagsHtml}
+      </div>
+    </div>` : ''}
+  `;
+
+  overlay.classList.add('active');
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modalOverlay')) {
+    document.getElementById('modalOverlay').classList.remove('active');
+  }
+}
+function closeModalBtn() {
+  document.getElementById('modalOverlay').classList.remove('active');
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') document.getElementById('modalOverlay').classList.remove('active');
+});
+
+renderCalendar();
+</script>
+</body>
+</html>
